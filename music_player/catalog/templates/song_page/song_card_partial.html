@@ -13,10 +13,31 @@
               <div class="p-1 d-inline-block border border-primary rounded">{{j.name}}</div>
               {% endfor %}
             </h5>
-            <a href="/catalog/songs/{{i.id}}"><button class="btn btn-outline-danger">{% trans "Listen Song"%}</button></p>
-            <a href="/media/{{ i.content }}" download="{{ song.name }}" type="video/mp4">
-              <button class="btn btn-outline-danger">{% trans "Download Song"%}</button>
-            </a> 
+          {% if user.is_authenticated %}
+          <form action = "/catalog/usersong/" method ="POST">{% csrf_token %}
+          <input type = "hidden" name ="song" value = "{{i.id}}">
+          <a href="/catalog/songs/{{i.id}}"><button class="btn btn-outline-danger"> {% trans "Listen Song"%}</button></p>
+          </form>
+          {% comment %} dropdown show các playlists của user {% endcomment %}
+
+          <div class="dropdown">
+            <a class="btn btn-outline-danger text-danger dropdown-toggle" id="navbarDropdown{{i.id}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% trans "Add to playlist" %}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown{{i.id}}">
+            {% for playlist in playlists %}
+              <form action = "/catalog/addplaylist/" method ="POST">{% csrf_token %}
+              <input type = "hidden" name ="song_id" value = "{{i.id}}">
+              <input type = "hidden" name ="playlist_id" value = "{{playlist.id}}">
+              <input type = "submit" class = "dropdown-item" value = "{{playlist.name}}">
+              </form>
+              {% comment %} <a class="dropdown-item" href="#"> {{playlist.name}} </a> {% endcomment %}
+            {% endfor %}
+            </div>
+          </div>
+          {% else %}
+          <a href="/catalog/songs/{{i.id}}"><button class="btn btn-outline-danger"> {% trans "Listen Song"%}</button></p>
+          {%endif%}
           </div>
         </div>
       </div>

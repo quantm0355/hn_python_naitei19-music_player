@@ -29,9 +29,11 @@
                         {% trans "List" %}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#"> {% trans "Most Downloaded Songs" %} </a>
-                        <a class="dropdown-item" href="#"> {% trans "Your Playlist" %} </a>
-                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/catalog/usersong"> {% trans "User History song" %} </a>
+                        <a class="dropdown-item" href="/catalog/upload"> {% trans "Upload song" %} </a>
+                        <a class="dropdown-item" href="/catalog/creatplaylist"> {% trans "Create your playlist" %} </a>
+                        <a class="dropdown-item" href="/catalog/playlist"> {% trans "All Playlists" %} </a>
+                        <a class="dropdown-item" href="/catalog/listenlater"> {% trans "Listen Later" %} </a>
                         <a class="dropdown-item" href="{% url "trending" %}"> {% trans "Trending Songs" %} </a>
                     </div>
                 </li>

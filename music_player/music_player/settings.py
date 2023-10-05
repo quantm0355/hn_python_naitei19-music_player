@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'bootstrap',
     'fontawesome',
     'django_dump_die',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
